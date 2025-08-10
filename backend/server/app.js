@@ -38,7 +38,7 @@ app.locals.broadcast = (event, data) => {
 };
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://silent-auction-app.netlify.app'],
+  origin: ['http://localhost:5173', 'https://silent-auction-app.netlify.app', 'https://csis1.onrender.com'],
   credentials: true
 }));
 
