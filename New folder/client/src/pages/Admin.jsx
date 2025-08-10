@@ -6,7 +6,7 @@ export default function Admin() {
   const [form, setForm] = useState({ title: "", description: "", image: "" });
 
   async function load() {
-    const { data } = await api.get("/items");
+    const { data } = await api.get("/api/items");
     setItems(data);
   }
   useEffect(() => { load(); }, []);
@@ -14,7 +14,7 @@ export default function Admin() {
   const createItem = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/items", form);
+      await api.post("/api/items", form);
       setForm({ title: "", description: "", image: "" });
       load();
     } catch (e) {
@@ -24,7 +24,7 @@ export default function Admin() {
 
   const closeAuction = async (id) => {
     try {
-      await api.patch(`/admin/close/${id}`);
+      await api.patch(`/api/admin/close/${id}`);
       load();
     } catch (e) {
       alert(e.response?.data?.error || "Close failed");
@@ -34,7 +34,7 @@ export default function Admin() {
   const delItem = async (id) => {
     if (!confirm("Delete this item?")) return;
     try {
-      await api.delete(`/items/${id}`);
+      await api.delete(`/api/items/${id}`);
       load();
     } catch (e) {
       alert(e.response?.data?.error || "Delete failed");
@@ -43,7 +43,7 @@ export default function Admin() {
 
   const notify = async (id) => {
     try {
-      const { data } = await api.post(`/admin/notify/${id}`);
+      const { data } = await api.post(`/api/admin/notify/${id}`);
       alert(data.sent ? "Notified" : "No winner");
     } catch (e) {
       alert(e.response?.data?.error || "Notify failed");

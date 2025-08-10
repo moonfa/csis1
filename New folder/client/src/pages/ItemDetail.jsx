@@ -11,8 +11,8 @@ export default function ItemDetail() {
 
   async function load() {
     const [i, b] = await Promise.all([
-      api.get(`/items/${id}`),
-      api.get(`/bids/${id}`),
+      api.get(`/api/items/${id}`),
+      api.get(`/api/bids/${id}`),
     ]);
     setItem(i.data);
     setBids(b.data);
@@ -25,7 +25,7 @@ export default function ItemDetail() {
   const place = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/bids", { itemId: id, amount: Number(amount) });
+      await api.post("/api/bids", { itemId: id, amount: Number(amount) });
       setAmount("");
       await load();
     } catch (e) {

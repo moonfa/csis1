@@ -7,7 +7,7 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/auth/register", form);
+      await api.post("/api/auth/register", form);
       alert("Registered. Now login.");
     } catch (e) {
       alert(e.response?.data?.error || "Register failed");
