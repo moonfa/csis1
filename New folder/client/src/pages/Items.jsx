@@ -2,14 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 export default function Items() {
   const [items, setItems] = useState([]);
   const [q, setQ] = useState("");
 
   async function load() {
-    const { data } = await api.get("/items", { params: q ? { q } : {} });
+    const { data } = await api.get("/api/items", { params: q ? { q } : {} });
     setItems(data);
   }
 
